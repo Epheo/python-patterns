@@ -1,9 +1,12 @@
+#!/usr/bin/env python
 """Implementation of the state pattern"""
 
 # http://ginstrom.com/scribbles/2007/10/08/design-patterns-python-style/
+from __future__ import print_function
 
 
 class State(object):
+
     """Base state. This is to share functionality"""
 
     def scan(self):
@@ -15,6 +18,7 @@ class State(object):
 
 
 class AmState(State):
+
     def __init__(self, radio):
         self.radio = radio
         self.stations = ["1250", "1380", "1510"]
@@ -27,6 +31,7 @@ class AmState(State):
 
 
 class FmState(State):
+
     def __init__(self, radio):
         self.radio = radio
         self.stations = ["81.3", "89.1", "103.9"]
@@ -39,7 +44,9 @@ class FmState(State):
 
 
 class Radio(object):
+
     """A radio.     It has a scan button, and an AM/FM toggle switch."""
+
     def __init__(self):
         """We have an AM state and an FM state"""
         self.amstate = AmState(self)
@@ -61,3 +68,15 @@ if __name__ == '__main__':
 
     for action in actions:
         action()
+
+### OUTPUT ###
+# Scanning... Station is 1380 AM
+# Scanning... Station is 1510 AM
+# Switching to FM
+# Scanning... Station is 89.1 FM
+# Scanning... Station is 103.9 FM
+# Scanning... Station is 81.3 FM
+# Scanning... Station is 89.1 FM
+# Switching to AM
+# Scanning... Station is 1250 AM
+# Scanning... Station is 1380 AM

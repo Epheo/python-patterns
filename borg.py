@@ -7,6 +7,7 @@ class Borg:
 
     def __init__(self):
         self.__dict__ = self.__shared_state
+        self.state = 'Init'
 
     def __str__(self):
         return self.state
@@ -38,3 +39,14 @@ if __name__ == '__main__':
     print('rm1: {0}'.format(rm1))
     print('rm2: {0}'.format(rm2))
     print('rm3: {0}'.format(rm3))
+
+### OUTPUT ###
+# rm1: Running
+# rm2: Running
+# rm1: Zombie
+# rm2: Zombie
+# rm1 id: 140732837899224
+# rm2 id: 140732837899296
+# rm1: Init
+# rm2: Init
+# rm3: Init
